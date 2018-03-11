@@ -6,3 +6,4 @@ hot damn this is hard to put into words. I want it to give you choices that show
 if you say no, then obviously you don't, but if you say yes, you'll walk up to them and have a mini panic attack and end up just saying something like "What's up?"
  I want it so that if someone walks up to you and initiates a conversation, you can choose what to say, but all the options are very brief and seem as if you 
 are just trying to end the conversation, unless the person addressing you is someone you have been friends for a long time with. idk, just a random idea I came up with.
+If you are interested in helping develop the game or have ideas about it, feel free send a pull request.
