@@ -1,8 +1,8 @@
-﻿/*using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Collision : MonoBehaviour {*/
+public class OnCollide : MonoBehaviour {
 	/*static public float newX = 100f;
 	static public float newY = 100f;
 	static public float newZ = 100f;*/
@@ -18,9 +18,9 @@ public class Collision : MonoBehaviour {*/
 	}*/
 
 	// Use this for initialization
-	//void Start () {
+	void Start () {
 
-	//}
+	}
 
 	/*	private GameObject FindEnemy(){
 		float closest = visionRange;
@@ -35,27 +35,26 @@ public class Collision : MonoBehaviour {*/
 		return closestEnemy;
 	}*/
 	// Update is called once per frame
-//void OnCollisionEnter(/*Collision col*/){
+	Vector3 camLoc;
+	void OnCollisionEnter(/*Collision col*/){
 		//if (col.gameObject.tag == "Player") {
-//		Collide ();
+		Collide ();
 		//}
-	//}
-	/*public float changing;
+	}
+	public float changing;
 	void Collide ()
 	{
 		GameObject StartText = (GameObject)Instantiate(Resources.Load ("StartTextPrefab"));
-		StartText.transform.position = transform.position;
-		StartText.transform.position += Vector3.down * changing;
-		Vector3 camLoc = Camera.main.transform.position;
-		Camera.main.transform.position = StartText.transform.position;
-		Camera.main.transform.position += Vector3.back * changing;
-		Destroy (gameObject); // Deletes the coin on collision
-		Camera.main.GetComponent<Collision>().enabled = false;
-		if (Input.GetKey(KeyCode.Return))
-			{
-				Camera.main.GetComponent<Collison>().enabled = true;
-				Camera.main.transform.position = camLoc;
-			}*/
+		StartText.transform.position = GameObject.Find("PinkCoin").transform.position;
+		StartText.transform.position += Vector3.up * changing * .75f;
+		StartText.transform.position += Vector3.back * changing * 0.1f;
+		camLoc = GameObject.Find("datboi").transform.position;
+		Camera.main.transform.position = GameObject.Find("PinkCoin").transform.position;
+		GameObject.Find("datboi").transform.position += Vector3.back * 1.2f;
+		Destroy (GameObject.Find("PinkCoin")); // Deletes the coin on collision
+		Camera.main.GetComponent<LookMouse>().enabled = false;
+		GameObject.Find ("datboi").GetComponent<Move> ().enabled = false;
+		Camera.main.transform.position += Vector3.up * changing;
 		//if (col.gameObject.name == "M3DMale") {
 		/*Vector3 targetVector = new Vector3 (100f, 100f, 100f);
 			Vector3 me = transform.position;
@@ -76,5 +75,14 @@ public class Collision : MonoBehaviour {*/
 				transform.position += Vector3.forward * speed * Time.deltaTime;
 			}*/
 		//}
-	//}
-//}
+	}
+	void Update()
+	{
+		if (Input.GetKey (KeyCode.Return)) {
+			Camera.main.GetComponent<LookMouse> ().enabled = true;
+			GameObject.Find("datboi").transform.position = camLoc;
+			GameObject.Find ("datboi").GetComponent<Move> ().enabled = true;
+			Camera.main.transform.position -= Vector3.up * changing;
+		}
+	}
+}
